@@ -1,0 +1,6 @@
+{
+  "name": "apiato/provider",
+  "description": "Provider Container for apiato.",
+  "require": {
+  }
+}

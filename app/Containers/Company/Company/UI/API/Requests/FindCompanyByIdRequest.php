@@ -1,42 +1,47 @@
 <?php
 
-namespace App\Containers\AppSection\Authorization\UI\API\Requests;
+namespace App\Containers\Company\Company\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
-class AttachPermissionToRoleRequest extends Request
+class FindCompanyByIdRequest extends Request
 {
     /**
      * Define which Roles and/or Permissions has access to this request.
      */
     protected array $access = [
-        'roles' => '',
-        'permissions' => 'manage-roles',
+        'permissions' => '',
+        'roles'       => '',
     ];
 
     /**
      * Id's that needs decoding before applying the validation rules.
      */
     protected array $decode = [
-        'permissions_ids.*',
-        'role_id',
+        'id',
     ];
 
     /**
-     * Defining the URL parameters (`/stores/999/items`) allows applying
+     * Defining the URL parameters (e.g, `/user/{id}`) allows applying
      * validation rules on them and allows accessing them like request data.
      */
-    protected array $urlParameters = [];
+    protected array $urlParameters = [
+        'id',
+    ];
 
+    /**
+     * Get the validation rules that apply to the request.
+     */
     public function rules(): array
     {
         return [
-            'permissions_ids' => 'required',
-            'permissions_ids.*' => 'exists:' . config('permission.table_names.permissions') . ',id',
-            'role_id' => 'required|exists:' . config('permission.table_names.roles') . ',id',
+            'id' => 'required'
         ];
     }
 
+    /**
+     * Determine if the user is authorized to make this request.
+     */
     public function authorize(): bool
     {
         return $this->check([
