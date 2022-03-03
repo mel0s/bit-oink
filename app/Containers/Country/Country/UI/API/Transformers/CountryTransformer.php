@@ -10,22 +10,21 @@ class CountryTransformer extends Transformer
     /**
      * @var  array
      */
-    protected $defaultIncludes = [
-
-    ];
+    protected $defaultIncludes = [];
 
     /**
      * @var  array
      */
-    protected $availableIncludes = [
-
-    ];
+    protected $availableIncludes = [];
 
     public function transform(Country $country): array
     {
         $response = [
             'object' => $country->getResourceKey(),
             'id' => $country->getHashedKey(),
+            'code' => $country->code,
+            'description' => $country->description,
+            'coin' => $country->coin,
             'created_at' => $country->created_at,
             'updated_at' => $country->updated_at,
             'readable_created_at' => $country->created_at->diffForHumans(),

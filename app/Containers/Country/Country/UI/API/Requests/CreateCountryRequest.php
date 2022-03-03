@@ -35,7 +35,8 @@ class CreateCountryRequest extends Request
     public function rules(): array
     {
         return [
-            // 'id' => 'required'
+            'code' => 'required',
+            'description' => 'required'
         ];
     }
 

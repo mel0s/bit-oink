@@ -9,7 +9,7 @@ class Country extends Model
     protected $fillable = [
         "code",
         "description",
-        "money",
+        "coin",
     ];
 
     protected $attributes = [];

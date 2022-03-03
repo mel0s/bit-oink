@@ -4,18 +4,35 @@
  * @apiGroup           Country
  * @apiName            createCountry
  *
- * @api                {POST} /v1/countries Endpoint title here..
- * @apiDescription     Endpoint description here..
+ * @api                {POST} /v1/countries Crear pais
+ * @apiDescription     Crea un registro pais
  *
  * @apiVersion         1.0.0
- * @apiPermission      none
+ * @apiPermission      Usuario autenticado
  *
- * @apiParam           {String}  parameters here..
+ * @apiParam           {String}  code Abreviatura del pais
+ * @apiParam           {String}  description Nombre completo del pais
+ * @apiParam           {String}  [coin] Nombre de la moneda del pais
  *
  * @apiSuccessExample  {json}  Success-Response:
- * HTTP/1.1 200 OK
+ * HTTP/1.1 201 Created
 {
-  // Insert the response of the request here...
+    "data": {
+        "object": "Country",
+        "id": "NxOpZowo9GmjKqdR",
+        "code": "mx",
+        "description": "Mexico",
+        "coin": "peso",
+        "created_at": "2022-03-03T22:52:34.000000Z",
+        "updated_at": "2022-03-03T22:52:34.000000Z",
+        "readable_created_at": "1 second ago",
+        "readable_updated_at": "1 second ago",
+        "real_id": 1
+    },
+    "meta": {
+        "include": [],
+        "custom": []
+    }
 }
  */
 
@@ -23,6 +40,5 @@ use App\Containers\Country\Country\UI\API\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 Route::post('countries', [Controller::class, 'createCountry'])
-    ->name('api_country_create_country')
-    ->middleware(['auth:api']);
-
+  ->name('api_country_create_country')
+  ->middleware(['auth:api']);

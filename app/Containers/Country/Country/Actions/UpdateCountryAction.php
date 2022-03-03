@@ -12,7 +12,9 @@ class UpdateCountryAction extends Action
     public function run(Request $request): Country
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'code',
+            'description',
+            'coin'
         ]);
 
         return app(UpdateCountryTask::class)->run($request->id, $data);
