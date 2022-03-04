@@ -19,6 +19,8 @@ class CountryTransformer extends Transformer
 
     public function transform(Country $country): array
     {
+
+
         $response = [
             'object' => $country->getResourceKey(),
             'id' => $country->getHashedKey(),
@@ -29,8 +31,9 @@ class CountryTransformer extends Transformer
             'updated_at' => $country->updated_at,
             'readable_created_at' => $country->created_at->diffForHumans(),
             'readable_updated_at' => $country->updated_at->diffForHumans(),
-
         ];
+
+        //var_dump($response);
 
         return $response = $this->ifAdmin([
             'real_id'    => $country->id,

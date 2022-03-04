@@ -17,6 +17,8 @@ class CreateCountryAction extends Action
             'coin'
         ]);
 
+        var_dump($data);
+
         return app(CreateCountryTask::class)->run($data);
     }
 }

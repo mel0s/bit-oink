@@ -3,12 +3,16 @@
 namespace App\Containers\Country\Country\UI\API\Controllers;
 
 use App\Containers\Country\Country\UI\API\Requests\CreateCountryRequest;
+use App\Containers\Country\Country\UI\API\Requests\CreateCountriesRequest;
 use App\Containers\Country\Country\UI\API\Requests\DeleteCountryRequest;
 use App\Containers\Country\Country\UI\API\Requests\GetAllCountriesRequest;
 use App\Containers\Country\Country\UI\API\Requests\FindCountryByIdRequest;
 use App\Containers\Country\Country\UI\API\Requests\UpdateCountryRequest;
 use App\Containers\Country\Country\UI\API\Transformers\CountryTransformer;
+
+
 use App\Containers\Country\Country\Actions\CreateCountryAction;
+use App\Containers\Country\Country\Actions\CreateCountriesAction;
 use App\Containers\Country\Country\Actions\FindCountryByIdAction;
 use App\Containers\Country\Country\Actions\GetAllCountriesAction;
 use App\Containers\Country\Country\Actions\UpdateCountryAction;
@@ -24,6 +28,12 @@ class Controller extends ApiController
         return $this->created($this->transform($country, CountryTransformer::class));
     }
 
+    public function createCountries(CreateCountriesRequest $request): array
+    {
+        $country = app(CreateCountriesAction::class)->run($request);
+        return $this->transform($country, CountryTransformer::class);
+    }
+
     public function findCountryById(FindCountryByIdRequest $request): array
     {
         $country = app(FindCountryByIdAction::class)->run($request);
@@ -33,6 +43,7 @@ class Controller extends ApiController
     public function getAllCountries(GetAllCountriesRequest $request): array
     {
         $countries = app(GetAllCountriesAction::class)->run($request);
+
         return $this->transform($countries, CountryTransformer::class);
     }
 
