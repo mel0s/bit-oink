@@ -1,0 +1,6 @@
+{
+  "name": "apiato/state",
+  "description": "State Container for apiato.",
+  "require": {
+  }
+}
